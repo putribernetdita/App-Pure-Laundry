@@ -1,5 +1,16 @@
 # Pure Laundry
 
+**PUTRI BERNETDITA**  
+**NIM: 12030124130174**  
+**Mata Kuliah/Kelas: Pengkodean dan Pemrograman / D**  
+**Dosen Pengampu: Dr. Totok Dewayanto, S.E., M.Si., Akt., CA**
+
+**PROGRAM STUDI S1 AKUNTANSI**  
+**FAKULTAS EKONOMIKA DAN BISNIS**  
+**UNIVERSITAS DIPONEGORO**
+
+🔗 **[Klik di sini untuk membuka sistem](https://putribernetdita.github.io/App-Pure-Laundry/)**
+
 Aplikasi web sistem akuntansi laundry dengan empat entitas: pelanggan, layanan, transaksi, dan pembayaran.
 
 ## Dokumentasi
@@ -10,7 +21,10 @@ Aplikasi web sistem akuntansi laundry dengan empat entitas: pelanggan, layanan, 
 
 - Buka `frontend/index.html` langsung di browser. Tanpa konfigurasi Supabase, aplikasi berjalan dengan data contoh yang tersimpan di browser.
 - Untuk mode web server opsional, jalankan `node backend/app.js`, lalu buka `http://localhost:3000`. Tidak ada dependensi npm.
-- Untuk menyambungkan database, jalankan `database/schema.sql` di Supabase SQL Editor. Di aplikasi, buka ikon pengaturan lalu isi Project URL dan publishable key.
+- Untuk menyambungkan database secara lokal, jalankan `database/schema.sql` di Supabase SQL Editor. Di aplikasi, buka ikon pengaturan lalu isi Project URL dan publishable key.
+- Agar GitHub Pages dan HP memakai project yang sama, isi `frontend/supabase-config.js` dengan Project URL dan publishable key sebelum push. File ini publik; hanya gunakan publishable key, bukan `service_role`.
+
+Konfigurasi dalam `frontend/supabase-config.js` diprioritaskan di setiap perangkat. Pengaturan dari ikon Supabase yang disimpan pada browser hanya menjadi fallback saat konfigurasi bersama belum diisi.
 
 Mode browser langsung dan server lokal sama-sama mengakses Supabase dari frontend. File `backend/app.js` hanya menyajikan frontend dan menyediakan `GET /api/health`; ia tidak menyimpan kredensial database.
 
@@ -27,17 +41,3 @@ git commit -m "Initial commit"
 git branch -M main
 git remote add origin https://github.com/USERNAME/NAMA-REPOSITORY.git
 git push -u origin main
-```
-
-Jika repository lokal sudah memiliki remote `origin`, gunakan `git remote set-url origin https://github.com/USERNAME/NAMA-REPOSITORY.git` sebagai pengganti perintah `git remote add`. File `.gitignore` di folder ini mengecualikan file environment lokal, dependensi, hasil build, dan file sistem operasi dari commit.
-
-## Menerbitkan ke GitHub Pages
-
-Workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) menerbitkan isi folder `frontend/` sebagai akar situs setiap kali ada push ke branch `main` atau `master`. Dengan begitu, `index.html`, `app.js`, dan `styles.css` berada pada lokasi yang sama dan dapat dimuat dengan path relatif. Jika Pages masih memakai mode branch/root, `index.html` di root repository akan mengarahkan ke `frontend/index.html`.
-
-1. Di repository GitHub, buka **Settings → Pages**.
-2. Pada **Build and deployment → Source**, pilih **GitHub Actions**.
-3. Push workflow ini ke branch `main` atau `master`, lalu buka tab **Actions** dan tunggu workflow **Deploy Pure Laundry to GitHub Pages** selesai dengan status berhasil.
-4. Buka URL Pages yang ditampilkan pada job deployment. Jika masih 404, pastikan workflow berhasil dan URL menggunakan nama owner serta nama repository yang tepat.
-
-GitHub Pages hanya menerbitkan frontend statis. Isi Project URL dan publishable key Supabase melalui pengaturan aplikasi setelah situs berhasil dibuka.
